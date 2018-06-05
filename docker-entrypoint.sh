@@ -44,7 +44,7 @@ echo "echo \"--- BEGIN COMMAND OUTPUT\"" >> /usr/local/bin/task0.sh
 echo "echo \"Cleaning up /dump/ ...\"" >> /usr/local/bin/task0.sh
 echo "find /dump -maxdepth 1 ! -wholename '/dump' ! -wholename '/dump/lost+found' -exec rm -fr {} \;" >> /usr/local/bin/task0.sh
 if [ -z "${CRONCMD}" ]; then
-    echo "export PGPASSWORD=${PGPASSWORD}" >> /usr/local/bin/task0.sh
+    echo "export PGPASSWORD=\"${PGPASSWORD}\"" >> /usr/local/bin/task0.sh
     if [ -z "${PGDB}" ]; then
         echo "pg_dumpall -h ${PGHOST} -U ${PGUSER} > /dump/postgres.sql" >> /usr/local/bin/task0.sh
     else
